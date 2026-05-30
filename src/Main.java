@@ -3,8 +3,33 @@ import java.io.IOException;
 import java.util.Scanner;
 public class Main {
     public static Scanner scanner; // Note: Do not change this line.
+    static int MAX_MOVIES = 100;
 
-    public static void manageMovies() {}
+
+    static String OPENING_MESSAGE = "Welcome to the Movies Management System!.";
+    static String ALL_ACTIONS = """
+            1. Add a new movie
+            2. Display all movies
+            3. Display movie rating
+            4. Find the best director
+            5. Exit
+            """;
+    static String ENDING_MESSAGE = "Exiting the program. Goodbye!";
+    static String INVALID_INPUT = "Invalid choice. Please try again.";
+
+
+    public static void manageMovies() {
+        printOpeningMessage();
+
+    }
+
+    public static void printOpeningMessage(){
+        System.out.println(OPENING_MESSAGE);
+    }
+
+    public static void addNewMovie(){
+
+    }
 
     public static void main(String[] args) throws IOException {
         String path = args[0];
@@ -25,4 +50,6 @@ public class Main {
         }
         System.out.println("All tests have ended.");
     }
+
+
 }
