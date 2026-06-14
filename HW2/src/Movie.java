@@ -6,23 +6,25 @@ public class Movie {
     private Director movieDirector;
 
 
-    public Movie(Director movieDirector, int yearOfRelease, Genre movieGenre, String name) {
-        if (check_if_can_add_movie(name)) {
+    public Movie(String name, Director movieDirector, int yearOfRelease, Genre movieGenre) {
             this.movieDirector = movieDirector;
             this.yearOfRelease = yearOfRelease;
             this.movieGenre = movieGenre;
             this.name = name;
-        }
     }
 
 
-    private static boolean check_if_can_add_movie(String name1) {
+    public static boolean check_if_can_add_movie(String name1) {
         if (movies_stored.length <= 30) {
             for (int i = 0; i < 30; i++) {
                 if (name1 == Movie.movies_stored[i]) {
+                    System.out.println("Movie is already in the system.");
                     return false;
                 }
             }
+        }
+        if(movies_stored.length > 30){
+            System.out.println("System is full,cannot add more movies.");
         }
         return true;
     }
