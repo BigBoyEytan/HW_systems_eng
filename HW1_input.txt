@@ -1,0 +1,129 @@
+10
+1
+Inception
+8.5
+Christopher Nolan
+5
+1
+The Dark Knight
+9.0
+Christopher Nolan
+1
+Interstellar
+8.7
+Christopher Nolan
+2
+5
+1
+Pulp Fiction
+8.9
+Quentin Tarantino
+1
+Django Unchained
+8.4
+Quentin Tarantino
+3
+Pulp Fiction
+3
+Avatar
+5
+1
+Memento
+7.9
+Christopher Nolan
+1
+Dunkirk
+8.2
+Christopher Nolan
+1
+The Prestige
+8.5
+Christopher Nolan
+4
+5
+1
+Fight Club
+11.0
+David Fincher
+5
+1
+Movie1
+7.0
+Director A
+1
+Movie2
+7.1
+Director A
+1
+Movie3
+7.2
+Director A
+1
+Movie4
+7.3
+Director A
+1
+Movie5
+7.4
+Director A
+1
+Movie6
+7.5
+Director A
+1
+Movie7
+7.6
+Director A
+1
+Movie8
+7.7
+Director A
+1
+Movie9
+7.8
+Director A
+1
+Movie10
+7.9
+Director A
+1
+Movie11
+8.0
+Director A
+5
+1
+Gladiator
+8.6
+Ridley Scott
+2
+5
+1
+Titanic
+9.1
+James Cameron
+1
+Aliens
+-1
+James Cameron
+3
+Titanic
+5
+1
+The Social Network
+8.0
+David Fincher
+1
+Se7en
+8.6
+David Fincher
+1
+Gone Girl
+8.1
+David Fincher
+4
+5
+1
+Tenet
+7.4
+Christopher Nolan
+5
