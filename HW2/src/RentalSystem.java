@@ -15,28 +15,99 @@ public class RentalSystem {
             System.out.println("System is full. Cannot add more movies.");
             return;
         }
-        if (isMovieExist(title, releaseYear, directorName)){
+        if (getMovieIndex(title, releaseYear, directorName) != NOT_EXIST){
             System.out.println("Movie is already in the system.");
             return;
         }
-
-        // check if director exist
-        // maybe static array of directors in class Director
-
-
-
+        Director director = getDirectorIfExist(directorName);
+        if (director == null){
+            director = new Director(directorName, biography);
+        }
+        movies[moviesCounter] = new Movie(title, genre, releaseYear, director);
     }
-    private boolean isMovieExist(String title, int releaseYear,String directorName){
-        for (int i = 0; i < moviesCounter; i++){
-            if (movies[i].isSameMovie(title, releaseYear, directorName)){
+//    private boolean isMovieExist(String title, int releaseYear,String directorName){
+//        for (int i = 0; i < moviesCounter; i++){
+//            if (movies[i].isSameMovie(title, releaseYear, directorName)){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+    public void removeMovie(String title,int releaseYear,String directorName){
+        int movieIndex = getMovieIndex(title, releaseYear, directorName);
+        //
+        if (movieIndex == NOT_EXIST) {
+            System.out.println("No such movie exist.");
+            return;
+        }
+        if (isMovieRented(title, releaseYear, directorName)){
+            System.out.println("Cannot remove a rented movie.");
+            return;
+        }
+        //
+        movies[movieIndex] = movies[moviesCounter];
+        movies[moviesCounter] = null;
+        moviesCounter--;
+    }
+
+    private boolean isMovieRented(String title,int releaseYear,String directorName){
+        for (int i = 0; i < customersCounter; i++){
+            if (customers[i].isMovieRented(title, releaseYear, directorName)){
                 return true;
             }
         }
         return false;
     }
 
-    public void removeMovie(){
+    private boolean isMovieRented(Movie movie){
+        for (int i = 0; i < customersCounter; i++){
+            if (customers[i].isMovieRented(movie)){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public void printMovies(){
+        if (moviesCounter == 0){
+            System.out.println("No Rented movies.");
+            System.out.println("No Unrented movies.");
+            //System.out.println("No Rented/Unrented movies.");
+            return;
+        }
+        //
+        if (customersCounter == 0){
+            System.out.println("No Rented movies.");
+            System.out.println("Unrented movies:");
+            for (int i = 0; i < moviesCounter; i++){
+                movies[i].printMovieInfo();
+            }
+            return;
+        }
+        else {
+            System.out.println("Rented movies: ");
+            boolean noneUnrented = true;
+            for (int i = 0; i < moviesCounter; i++){
+                if (isMovieRented(movies[i])){
+                    movies[i].printMovieInfo();
+                } else{
+                    noneUnrented = false;
+                }
+            }
+            if (noneUnrented){
+                System.out.println("No Unrented movies.");
+                return;
+            }
+            else{
+                System.out.println("Unrented movies: ");
+                for (int i = 0; i < moviesCounter; i++){
+                    if (!isMovieRented(movies[i])){
+                        movies[i].printMovieInfo();
+                    }
+                }
+            }
+        }
     }
 
     public void rentMovie(String customerName, String id, String title,int releaseYear,String directorName){
@@ -80,5 +151,35 @@ public class RentalSystem {
             }
         }
         return NOT_EXIST;
+    }
+    private Director getDirectorIfExist(String directorName){
+        for (int i = 0; i < moviesCounter; i++){
+            if (movies[i].isSameDirector(directorName)){
+                return movies[i].getDirector();
+            }
+        }
+        return null;
+    }
+
+    public void returnMovie(String id, String title,int releaseYear,String directorName){
+        int customerIndex = getCustomerIndex(id);
+        if (customerIndex == NOT_EXIST){
+            System.out.println("Customer not found.");
+        }
+
+        int movieIndex = getMovieIndex(title, releaseYear, directorName);
+        if (movieIndex == NOT_EXIST ||
+                !customers[customerIndex].isMovieRented(title, releaseYear, directorName)) {
+            System.out.println("Customer cannot return the movie.");
+            return;
+        }
+        boolean isMoviesRemaining =  customers[customerIndex].returnMovie(title, releaseYear, directorName);
+        if (!isMoviesRemaining){
+            customers[customerIndex] = customers[customersCounter];
+            customers[customersCounter] = null;
+            customersCounter--;
+        }
+
+
     }
 }

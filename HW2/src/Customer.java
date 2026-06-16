@@ -23,4 +23,32 @@ public class Customer {
         rentedMovies[this.rentedMoviesCounter] = movie;
         this.rentedMoviesCounter++;
     }
+
+    public boolean isMovieRented(String title,int releaseYear,String directorName){
+        for (int i = 0; i < rentedMoviesCounter; i++){
+            if (rentedMovies[i].isSameMovie(title, releaseYear, directorName)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean isMovieRented(Movie movie){
+        for (int i = 0; i < rentedMoviesCounter; i++){
+            if (rentedMovies[i].isSameMovie(movie)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean returnMovie(String title,int releaseYear,String directorName){
+        for (int i = 0; i < rentedMoviesCounter; i++){
+            if (rentedMovies[i].isSameMovie(title, releaseYear, directorName)){
+                rentedMovies[i] = rentedMovies[rentedMoviesCounter];
+                rentedMovies[rentedMoviesCounter] = null;
+                rentedMoviesCounter--;
+            }
+        }
+        return rentedMoviesCounter > 0;
+    }
 }

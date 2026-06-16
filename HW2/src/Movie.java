@@ -15,9 +15,20 @@ public class Movie {
         return this.title.equals(title) && this.releaseYear == releaseYear &&
                 this.director.isSameDirector(directorName);
     }
-
+    public boolean isSameMovie(Movie other){
+        return this.title.equals(other.title) && this.releaseYear == other.releaseYear &&
+                this.director.isSameDirector(other.director);
+    }
     public void printMovieInfo(){
         System.out.println("Title: " + this.title + ", Genre: " + this.genre
                 + ", Year: " + this.releaseYear + ", director: " + this.director.getName());
+    }
+
+    public boolean isSameDirector(String name){
+        return this.director.isSameDirector(name);
+    }
+
+    public Director getDirector() {
+        return director;
     }
 }
