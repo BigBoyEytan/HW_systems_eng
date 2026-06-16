@@ -1,23 +1,26 @@
 public class Customer {
-    private Movie[] rented_movies = new Movie[5];
+    private final static int RENT_LIMIT = 5;
     private String name;
     private String id;
+    private Movie[] rentedMovies;
+    private int rentedMoviesCounter = 0;
 
-    public Customer(String name, String id, Movie[] rented_movies) {
+    public Customer(String name, String id) {
         this.name = name;
         this.id = id;
-        this.rented_movies = rented_movies;
+        this.rentedMovies = new Movie[RENT_LIMIT];
     }
 
-    public Movie[] getRented_movies() {
-        return rented_movies;
+    public boolean isSameCustomer(String id){
+        return this.id.equals(id);
     }
 
-    public String getName() {
-        return name;
+    public boolean isCustomerReachedLimit(){
+        return this.rentedMoviesCounter == RENT_LIMIT;
     }
 
-    public String getId() {
-        return id;
+    public void rentMovie(Movie movie){
+        rentedMovies[this.rentedMoviesCounter] = movie;
+        this.rentedMoviesCounter++;
     }
 }
