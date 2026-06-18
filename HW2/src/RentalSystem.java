@@ -1,5 +1,5 @@
 /**
- *
+ * Represents a Movie Rental System that manages a collection of movies and customers.
  */
 public class RentalSystem {
     final static int NOT_EXIST = -1;
@@ -11,7 +11,7 @@ public class RentalSystem {
 
 
     /**
-     * Constructs a new RentalSystem
+     * Constructs a new RentalSystem instance.
      */
     public RentalSystem() {
         movies = new Movie[MAX_SIZE];
@@ -20,7 +20,7 @@ public class RentalSystem {
 
 
     /**
-     *  Adds new movie to the RentalSystems's storage if it's legal and the storage isn't full
+     *  Adds new movie to the RentalSystems's storage if the movie is valid and the storage isn't full.
      * @param title the title of the movie
      * @param genre the genre of the movie
      * @param releaseYear the year the movie was released
@@ -70,11 +70,11 @@ public class RentalSystem {
 
 
     /**
-     *
+     *Checks if a specific movie is currently rented by any customer in the system.
      * @param title the title of the movie
      * @param releaseYear the year the movie was released
      * @param directorName the name of the movie's director
-     * @return
+     * @return true if at least one customer has rented this movie, false otherwise
      */
     private boolean isMovieRented(String title,int releaseYear,String directorName){
         for (int i = 0; i < customersCounter; i++){
@@ -87,9 +87,9 @@ public class RentalSystem {
 
 
     /**
-     *
-     * @param movie
-     * @return
+     * Checks if a given Movie object is currently rented by any customer.
+     * @param movie the Movie object to check
+     * @return true if the movie is currently rented, false otherwise
      */
     private boolean isMovieRented(Movie movie){
         for (int i = 0; i < customersCounter; i++){
@@ -102,7 +102,8 @@ public class RentalSystem {
 
 
     /**
-     *
+     * Prints details of all the rented movies in the systems,
+     * and the prints the details of all the unrented movies.
      */
     public void printMovies(){
         if (moviesCounter == 0){
@@ -150,7 +151,9 @@ public class RentalSystem {
 
 
     /**
-     *
+     * Processes a movie rental request. If the customer does not exist, a new customer
+     * account is created. Checks if the movie exists, if the customer
+     * already has it, or if the customer reached their rental limit before completing the rental.
      * @param customerName the name of the customer
      * @param id the customer's id
      * @param title the title of the movie
@@ -190,9 +193,9 @@ public class RentalSystem {
 
 
     /**
-     *
+     * Searches for a customer by their id.
      * @param id the customer's id
-     * @return
+     * @return the index of the customer in the array, or NOT_EXIST if not found
      */
     private int getCustomerIndex(String id){
         for (int i = 0; i < customersCounter; i++){
@@ -205,12 +208,12 @@ public class RentalSystem {
 
 
     /**
-     *
+     * Searches for a movie based on its title, release year, and director.
      * @param title the title of the movie
      * @param releaseYear the year the movie was released
      * @param directorName the name of the movie's director
-     * @return
-     */
+     * @return the index of the movie in the array, or NOT_EXIST if not found
+     * */
     private int getMovieIndex(String title,int releaseYear,String directorName){
         for (int i = 0; i < moviesCounter; i++){
             if (movies[i].isSameMovie(title, releaseYear, directorName)){
@@ -222,9 +225,9 @@ public class RentalSystem {
 
 
     /**
-     *
+     * Searches existing movies to find a matching Director object by name.
      * @param directorName the name of the movie's director
-     * @return
+     * @return the existing Director object if exists, or null otherwise
      */
     private Director getDirectorIfExist(String directorName){
         for (int i = 0; i < moviesCounter; i++){
@@ -237,7 +240,7 @@ public class RentalSystem {
 
 
     /**
-     *
+     * Handles returning a rented movie and updates all necessary fields.
      * @param id the customer's id
      * @param title the title of the movie
      * @param releaseYear the year the movie was released

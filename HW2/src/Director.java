@@ -1,9 +1,12 @@
+/**
+ * Represents a movie director with a unique name and biography.
+ */
 public class Director {
     private String name;
     private String biography;
 
     /**
-     * constructor
+     * Constructs a new Director instance.
      *
      * @param name
      * @param Biography
@@ -15,7 +18,7 @@ public class Director {
     }
 
     /**
-     *
+     * Gets the name of the director.
      * @return the name of This director
      */
     public String getName(){
@@ -23,20 +26,20 @@ public class Director {
     }
 
     /**
-     * cheks if this director has the same name as the director's name given (its their id)
+     * Checks if this director matches the given name.
      *
      * @param name name of the director to check
-     * @return true if they have the same name (id) , false otherwise
+     * @return true if the names are the same , false otherwise
      */
     public boolean isSameDirector(String name){
         return this.name.equals(name);
     }
 
     /**
-     * cheks if this director has the same name as the director given (its their id)
+     * Checks if this director has the same name as another director instance.
      *
-     * @param other director to compare the name to
-     * @return true if they have the same name (id) , false otherwise
+     * @param other the other director to compare with
+     * @return true if the names are the same , false otherwise
      */
     public boolean isSameDirector(Director other){
         return this.name.equals(other.name);

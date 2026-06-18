@@ -1,5 +1,5 @@
 /**
- * Represents the specific category or genre of a movie.
+ * Represents the specific genre of a movie.
  */
 public enum Genre {
     ACTION,

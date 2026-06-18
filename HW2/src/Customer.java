@@ -1,5 +1,5 @@
 /**
- * Represents a customer
+ * Represents a customer in the movies rental system.
  */
 public class Customer {
     private final static int RENT_LIMIT = 5;
@@ -9,7 +9,7 @@ public class Customer {
     private int rentedMoviesCounter = 0;
 
     /**
-     * Constructor
+     * Constructs a new Customer instance with a given name and id.
      *
      * @param name the name of the customer
      * @param id the unique code of each customer
@@ -21,10 +21,10 @@ public class Customer {
     }
 
     /**
-     * Checks if the provided ID matches this customer's ID.
+     * Checks if the provided id matches this customer's id.
      *
      * @param id the ID string to compare to
-     * @return true if the ID matches, false if they arent .
+     * @return true if the ID matches, false otherwise.
      */
     public boolean isSameCustomer(String id){
         return this.id.equals(id);

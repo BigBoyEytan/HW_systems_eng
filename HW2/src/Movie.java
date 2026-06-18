@@ -8,7 +8,7 @@ public class Movie {
     private Director director;
 
     /**
-     * Constructor
+     * Constructs a new Movie instance
      *
      * @param title the title of the movie
      * @param genre the genre of the movie
