@@ -1,3 +1,6 @@
+/**
+ *
+ */
 public class RentalSystem {
     final static int NOT_EXIST = -1;
     final static int MAX_SIZE = 30;
@@ -6,10 +9,24 @@ public class RentalSystem {
     private Movie[] movies;
     private Customer[] customers;
 
+
+    /**
+     * Constructs a new RentalSystem
+     */
     public RentalSystem() {
         movies = new Movie[MAX_SIZE];
         customers = new Customer[MAX_SIZE];
     }
+
+
+    /**
+     *  Adds new movie to the RentalSystems's storage if it's legal and the storage isn't full
+     * @param title the title of the movie
+     * @param genre the genre of the movie
+     * @param releaseYear the year the movie was released
+     * @param directorName the name of the movie's director
+     * @param biography the biography of the director
+     */
     public void addMovie(String title, Genre genre,int releaseYear,String directorName,String biography) {
         if (moviesCounter == MAX_SIZE){
             System.out.println("System is full. Cannot add more movies.");
@@ -27,6 +44,13 @@ public class RentalSystem {
         moviesCounter++;
     }
 
+
+    /**
+     * Removes a movie for the RentalSystems's storage if exist there and updates all related fields
+     * @param title the title of the movie
+     * @param releaseYear the year the movie was released
+     * @param directorName the name of the movie's director
+     */
     public void removeMovie(String title,int releaseYear,String directorName){
         int movieIndex = getMovieIndex(title, releaseYear, directorName);
 
@@ -44,6 +68,14 @@ public class RentalSystem {
         moviesCounter--;
     }
 
+
+    /**
+     *
+     * @param title the title of the movie
+     * @param releaseYear the year the movie was released
+     * @param directorName the name of the movie's director
+     * @return
+     */
     private boolean isMovieRented(String title,int releaseYear,String directorName){
         for (int i = 0; i < customersCounter; i++){
             if (customers[i].isMovieRented(title, releaseYear, directorName)){
@@ -53,6 +85,12 @@ public class RentalSystem {
         return false;
     }
 
+
+    /**
+     *
+     * @param movie
+     * @return
+     */
     private boolean isMovieRented(Movie movie){
         for (int i = 0; i < customersCounter; i++){
             if (customers[i].isMovieRented(movie)){
@@ -62,6 +100,10 @@ public class RentalSystem {
         return false;
     }
 
+
+    /**
+     *
+     */
     public void printMovies(){
         if (moviesCounter == 0){
             System.out.println("Rented Movies: ");
@@ -106,6 +148,15 @@ public class RentalSystem {
         }
     }
 
+
+    /**
+     *
+     * @param customerName the name of the customer
+     * @param id the customer's id
+     * @param title the title of the movie
+     * @param releaseYear the year the movie was released
+     * @param directorName the name of the movie's director
+     */
     public void rentMovie(String customerName, String id, String title,int releaseYear,String directorName){
         int customerIndex = getCustomerIndex(id);
         int movieIndex = getMovieIndex(title, releaseYear, directorName);
@@ -137,6 +188,12 @@ public class RentalSystem {
         }
     }
 
+
+    /**
+     *
+     * @param id the customer's id
+     * @return
+     */
     private int getCustomerIndex(String id){
         for (int i = 0; i < customersCounter; i++){
             if (customers[i].isSameCustomer(id)){
@@ -145,6 +202,15 @@ public class RentalSystem {
         }
         return NOT_EXIST;
     }
+
+
+    /**
+     *
+     * @param title the title of the movie
+     * @param releaseYear the year the movie was released
+     * @param directorName the name of the movie's director
+     * @return
+     */
     private int getMovieIndex(String title,int releaseYear,String directorName){
         for (int i = 0; i < moviesCounter; i++){
             if (movies[i].isSameMovie(title, releaseYear, directorName)){
@@ -153,6 +219,13 @@ public class RentalSystem {
         }
         return NOT_EXIST;
     }
+
+
+    /**
+     *
+     * @param directorName the name of the movie's director
+     * @return
+     */
     private Director getDirectorIfExist(String directorName){
         for (int i = 0; i < moviesCounter; i++){
             if (movies[i].isSameDirector(directorName)){
@@ -162,6 +235,14 @@ public class RentalSystem {
         return null;
     }
 
+
+    /**
+     *
+     * @param id the customer's id
+     * @param title the title of the movie
+     * @param releaseYear the year the movie was released
+     * @param directorName the name of the movie's director
+     */
     public void returnMovie(String id, String title,int releaseYear,String directorName){
         int customerIndex = getCustomerIndex(id);
         if (customerIndex == NOT_EXIST){
