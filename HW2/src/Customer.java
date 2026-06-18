@@ -44,9 +44,10 @@ public class Customer {
     public boolean returnMovie(String title,int releaseYear,String directorName){
         for (int i = 0; i < rentedMoviesCounter; i++){
             if (rentedMovies[i].isSameMovie(title, releaseYear, directorName)){
-                rentedMovies[i] = rentedMovies[rentedMoviesCounter];
-                rentedMovies[rentedMoviesCounter] = null;
+                rentedMovies[i] = rentedMovies[rentedMoviesCounter - 1];
+                rentedMovies[rentedMoviesCounter - 1] = null;
                 rentedMoviesCounter--;
+                break;
             }
         }
         return rentedMoviesCounter > 0;
